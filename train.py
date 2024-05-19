@@ -54,7 +54,7 @@ def train(model:MyLlamaForCausalLM, train_dataloader, optimizer:Adam, epochs, cl
             mem = torch.cuda.max_memory_reserved() / (1024 ** 3)
             print(f"Epoch {epoch}, Step {iter}, Loss: {loss.item()}, time: {'%.3f'%(delta_time*1000)} ms, mem: {mem} GB")
         model_save_path = f"model_epoch_{epoch + 1}.pt"
-        # torch.save(model.state_dict(), model_save_path)
+        torch.save(model.state_dict(), model_save_path)
         print(f"Model saved at {model_save_path}")
         print(f"Average training loss for epoch {epoch+1}: {total_loss / len(train_dataloader)}")
 
